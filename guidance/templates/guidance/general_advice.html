@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block title %}General Guidance{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <!-- Header -->
+    <div class="text-center mb-5">
+
+        {% if user.is_authenticated %}
+
+            <h2>Welcome, {{user.first_name}} 👋</h2>
+
+            <p class="text-muted">
+                Explore guidance categories or ask a guide for personalized assistance.
+            </p>
+
+            <a href="{%url 'ask_guide' %}" class="btn btn-success">
+                Ask a Guide
+            </a>
+
+        {% else %}
+
+            <h2>General Guidance</h2>
+
+            <p class="text-muted">
+                Explore guidance across different categories. Join Disha Connect to ask verified guides and receive personalized guidance.
+            </p>
+
+            <a href="{% url 'register' %}" class="btn btn-primary">
+                Join Disha Connect
+            </a>
+
+        {% endif %}
+
+    </div>
+
+    <!-- Categories -->
+    <div class="row">
+
+        {% for category in categories %}
+
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+
+            <div class="card shadow-sm h-100">
+
+                <div class="card-body text-center">
+
+                    <h5 class="card-title">
+                        {{ category.category_name }}
+                    </h5>
+
+                    <p class="card-text text-muted">
+                        {% if category.description %}
+                            {{ category.description }}
+                        {% else %}
+                            Explore guidance in this category.
+                        {% endif %}
+                    </p>
+
+                    <a href="{% url 'category_questions' category.id %}"
+                       class="btn btn-outline-primary">
+                        View Questions
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="col-12 text-center">
+
+            <h4>No guidance categories available.</h4>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

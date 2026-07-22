@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ question.question_title }}{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <!-- Question -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <small class="text-primary">
+
+                {{ question.category.category_name }}
+
+            </small>
+
+            <h2 class="mt-2">
+
+                {{ question.question_title }}
+
+            </h2>
+
+            <hr>
+
+            <p style="white-space:pre-line; line-height:1.8;">
+
+                {{ question.answer }}
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Related Questions -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-header">
+
+            <h4>Related Topics</h4>
+
+        </div>
+
+        <div class="list-group list-group-flush">
+
+            {% for related in related_questions %}
+
+                <a href="{% url 'question_answer' related.id %}"
+
+                   class="list-group-item list-group-item-action">
+
+                    {{ related.question_title }}
+
+                </a>
+
+            {% empty %}
+
+                <div class="list-group-item">
+
+                    No related topics available.
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    <!-- AI & Guide -->
+
+    <div class="card shadow">
+
+        <div class="card-body text-center">
+
+            <h3>
+
+                Need More Help?
+
+            </h3>
+
+            <p class="text-muted">
+
+                Continue your guidance journey with AI or connect directly with one of our trusted guides.
+
+            </p>
+
+            {% if user.is_authenticated %}
+
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+
+                    <a href="{%url 'ai_guidance' %}" class="btn btn-primary btn-lg">
+
+                        🤖 Ask AI
+
+                    </a>
+
+                    <a href="{%url 'ask_guide' %}" class="btn btn-success btn-lg">
+
+                        👨‍🏫 Ask a Guide
+
+                    </a>
+
+                </div>
+
+            {% else %}
+
+                <p>
+
+                    Register to unlock personalized guidance.
+
+                </p>
+
+                <a href="{% url 'register' %}"
+
+                   class="btn btn-primary btn-lg">
+
+                    Join Disha Connect
+
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <!-- Navigation -->
+
+    <div class="mt-4 d-flex justify-content-between">
+
+        <a href="{% url 'category_questions' question.category.id %}"
+
+           class="btn btn-outline-secondary">
+
+            ← Back to Questions
+
+        </a>
+
+        <a href="{% url 'general_advice' %}"
+
+           class="btn btn-outline-primary">
+
+            All Categories
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

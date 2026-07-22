@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+
+{% block title %}Generate Kundali{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <div class="card shadow">
+
+                <div class="card-header text-center">
+                    <h2>🔮 Generate Your Kundali</h2>
+                    <p class="text-muted mb-0">
+                        Enter your birth details to generate your birth chart.
+                    </p>
+                </div>
+
+                <div class="card-body">
+
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+                        <!-- Name -->
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Full Name (Optional)
+                            </label>
+
+                            <input
+                                type="text"
+                                name="full_name"
+                                class="form-control"
+                                placeholder="Enter your name">
+                        </div>
+
+                        <!-- Date of Birth -->
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Date of Birth *
+                            </label>
+
+                            <input
+                                type="date"
+                                name="date_of_birth"
+                                class="form-control"
+                                required>
+                        </div>
+
+                        <!-- Time of Birth -->
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Time of Birth *
+                            </label>
+
+                            <input
+                                type="time"
+                                name="time_of_birth"
+                                class="form-control"
+                                required>
+                        </div>
+
+                        <!-- Place of Birth -->
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Place of Birth *
+                            </label>
+
+                            <input
+                                type="text"
+                                name="place_of_birth"
+                                class="form-control"
+                                placeholder="Example: Noida, Uttar Pradesh, India"
+                                required>
+                        </div>
+
+                        <!-- Gender -->
+
+                        <div class="mb-4">
+                            <label class="form-label">
+                                Gender (Optional)
+                            </label>
+
+                            <select
+                                name="gender"
+                                class="form-select">
+
+                                <option value="">
+                                    Select Gender
+                                </option>
+
+                                <option value="Male">
+                                    Male
+                                </option>
+
+                                <option value="Female">
+                                    Female
+                                </option>
+
+                                <option value="Other">
+                                    Other
+                                </option>
+
+                            </select>
+                        </div>
+
+                        <!-- Submit -->
+
+                        <div class="text-center">
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary btn-lg">
+
+                                Generate Kundali 🔮
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            <!-- Guidance Note -->
+
+            <div class="alert alert-info mt-4 text-center">
+
+                <strong>Guidance Note:</strong><br>
+
+                Disha Connect believes astrology can offer direction and perspective,
+                while your decisions and actions shape your journey.
+                Use these insights as guidance alongside your own wisdom and judgment.
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

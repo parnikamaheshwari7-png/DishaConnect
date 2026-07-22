@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ category.category_name }}{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <!-- Page Header -->
+    <div class="text-center mb-5">
+
+        <h2>{{ category.category_name }}</h2>
+
+        <p class="text-muted">
+            Browse commonly asked questions or search for the guidance you need.
+        </p>
+
+    </div>
+
+    <!-- Search -->
+    <div class="row justify-content-center mb-5">
+
+        <div class="col-md-7">
+
+            <input
+                type="text"
+                class="form-control form-control-lg"
+                placeholder="🔍 Search questions in {{ category.category_name }}">
+
+        </div>
+
+    </div>
+
+    <!-- Questions -->
+
+    <div class="list-group shadow-sm">
+
+        {% for question in questions %}
+
+            <a href="{% url 'question_answer' question.id %}"
+               class="list-group-item list-group-item-action py-3">
+
+                {{ question.question_title }}
+
+            </a>
+
+        {% empty %}
+
+            <div class="alert alert-warning text-center">
+
+                No questions available in this category.
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+    <!-- AI & Guide Section -->
+
+    <div class="card shadow mt-5">
+
+        <div class="card-body text-center">
+
+            <h4>Didn't find your question?</h4>
+
+            <p class="text-muted">
+
+                Let AI help you instantly or connect with one of our verified guides.
+
+            </p>
+
+            {% if user.is_authenticated %}
+
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+
+                    <a href="{%url 'ai_guidance' %}" class="btn btn-primary btn-lg">
+
+                        🤖 Ask AI
+
+                    </a>
+
+                    <a href="{%url 'ask_guide' %}" class="btn btn-success btn-lg">
+
+                        👨‍🏫 Ask a Guide
+
+                    </a>
+
+                </div>
+
+            {% else %}
+
+                <p>
+
+                    Register to unlock AI assistance and personalized guidance.
+
+                </p>
+
+                <a href="{% url 'register' %}"
+                   class="btn btn-primary btn-lg">
+
+                    Join Disha Connect
+
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <!-- Back -->
+
+    <div class="mt-4">
+
+        <a href="{% url 'general_advice' %}"
+           class="btn btn-outline-secondary">
+
+            ← Back to Categories
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

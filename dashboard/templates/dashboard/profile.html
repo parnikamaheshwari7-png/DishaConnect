@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h2>Welcome, {{ user.first_name }} 👋</h2>
+
+    <p class="text-muted">
+        Every step forward begins with the right guidance.
+    </p>
+
+    <hr>
+
+    <div class="row">
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5>👤 Profile Information</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5>📂 My Queries</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5>🔔 Notifications</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5>📚 Saved Advice</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5>⚙️ Account Settings</h5>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

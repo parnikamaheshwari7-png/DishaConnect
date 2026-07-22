@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h1>
+        Welcome, {{ request.user.first_name }}
+    </h1>
+
+    <p>
+        Guide Dashboard
+    </p>
+
+    <div class="card shadow mb-4">
+        <div class="card-body">
+
+            <h4>Your Profile</h4>
+
+            <p>
+                <strong>Qualification:</strong>
+                {{ guide_profile.qualification }}
+            </p>
+
+            <p>
+                <strong>Experience:</strong>
+                {{ guide_profile.experience_years }} years
+            </p>
+
+            <p>
+                <strong>Languages:</strong>
+                {{ guide_profile.languages_known }}
+            </p>
+
+            <p>
+                <strong>Bio:</strong>
+                {{ guide_profile.bio }}
+            </p>
+
+        </div>
+    </div>
+
+    <div class="card shadow">
+        <div class="card-body">
+
+            <h4>Availability Status</h4>
+
+            {% if guide_profile.is_available %}
+                <span class="badge bg-success">
+                    Available for new queries
+                </span>
+            {% else %}
+                <span class="badge bg-danger">
+                    Currently Offline
+                </span>
+            {% endif %}
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

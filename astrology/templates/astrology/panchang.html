@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="text-center mb-5">
+        <h1>📅 Today's Panchang</h1>
+        <p class="text-muted">
+            Daily astrological timings and auspicious moments
+        </p>
+        <h5>{{ today }}</h5>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-6 mb-4">
+            <div class="card shadow h-100">
+                <div class="card-body">
+                    <h4>🌙 Tithi</h4>
+                    <p>{{ tithi }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card shadow h-100">
+                <div class="card-body">
+                    <h4>⭐ Nakshatra</h4>
+                    <p>{{ nakshatra }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card shadow h-100">
+                <div class="card-body">
+                    <h4>🔱 Yoga</h4>
+                    <p>{{ yoga }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card shadow h-100">
+                <div class="card-body">
+                    <h4>🪔 Karana</h4>
+                    <p>{{ karana }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card shadow h-100">
+                <div class="card-body">
+                    <h4>🌅 Sunrise</h4>
+                    <p>{{ sunrise }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card shadow h-100">
+                <div class="card-body">
+                    <h4>🌇 Sunset</h4>
+                    <p>{{ sunset }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card shadow border-warning h-100">
+                <div class="card-body">
+                    <h4>⏰ Rahu Kaal</h4>
+                    <p>{{ rahu_kaal }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card shadow border-success h-100">
+                <div class="card-body">
+                    <h4>🕉️ Abhijit Muhurat</h4>
+                    <p>{{ abhijit_muhurat }}</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="card shadow mt-4">
+        <div class="card-body text-center">
+            <h4>✨ Daily Insight</h4>
+            <p>
+                Today is considered favorable for learning,
+                planning new beginnings, and spiritual activities.
+                Focus on positive actions and thoughtful decisions.
+            </p>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

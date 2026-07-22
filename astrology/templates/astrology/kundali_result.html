@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Kundali{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="text-center mb-5">
+        <h2>🔮 Your Birth Chart</h2>
+
+        <p class="text-muted">
+            Your personalized astrological snapshot.
+        </p>
+    </div>
+
+    <!-- Birth Details -->
+
+    <div class="card shadow mb-4">
+
+        <div class="card-header">
+            <h4>Birth Details</h4>
+        </div>
+
+        <div class="card-body">
+
+            <p><strong>Name:</strong>
+                {% if chart.full_name %}
+                    {{ chart.full_name }}
+                {% else %}
+                    Not Provided
+                {% endif %}
+            </p>
+
+            <p><strong>Date of Birth:</strong> {{ chart.date_of_birth }}</p>
+
+            <p><strong>Time of Birth:</strong> {{ chart.time_of_birth }}</p>
+
+            <p><strong>Place of Birth:</strong> {{ chart.place_of_birth }}</p>
+
+            <p><strong>Gender:</strong>
+                {% if chart.gender %}
+                    {{ chart.gender }}
+                {% else %}
+                    Not Provided
+                {% endif %}
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Dummy Astrology Results -->
+
+    <div class="card shadow mb-4">
+
+        <div class="card-header">
+            <h4>Astrological Insights</h4>
+        </div>
+
+        <div class="card-body">
+
+            <p>🌞 <strong>Sun Sign:</strong> Virgo</p>
+
+            <p>🌙 <strong>Moon Sign:</strong> Taurus</p>
+
+            <p>⭐ <strong>Ascendant:</strong> Libra</p>
+
+            <p>🎨 <strong>Lucky Color:</strong> Blue</p>
+
+            <p>🔢 <strong>Lucky Number:</strong> 7</p>
+
+            <p>🪐 <strong>Dominant Planet:</strong> Jupiter</p>
+
+            <p>🔠 <strong>Suggested Name Initial:</strong> A, S, K</p>
+
+        </div>
+
+    </div>
+
+    <!-- Personality Analysis -->
+
+    <div class="card shadow mb-4">
+
+        <div class="card-header">
+            <h4>Personality Overview</h4>
+        </div>
+
+        <div class="card-body">
+
+            <p>
+                You are naturally curious, thoughtful and determined.
+                You tend to approach challenges with patience and practical thinking.
+                Your chart suggests strong communication skills and an ability to adapt to changing situations.
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Guest Restriction -->
+
+    {% if not user.is_authenticated %}
+
+    <div class="alert alert-info text-center">
+
+        <h5>Unlock Detailed Analysis</h5>
+
+        <p>
+            Create an account to access detailed planetary analysis,
+            personalized recommendations and AI astrology guidance.
+        </p>
+
+        <a href="{% url 'register' %}" class="btn btn-primary">
+            Register Now
+        </a>
+
+        <a href="{% url 'login' %}" class="btn btn-outline-primary">
+            Login
+        </a>
+
+    </div>
+
+    {% else %}
+
+    <div class="card shadow">
+
+        <div class="card-header">
+            <h4>Detailed Analysis</h4>
+        </div>
+
+        <div class="card-body">
+
+            <p>
+                Your planetary positions indicate good opportunities
+                for growth, learning and leadership. Jupiter's influence
+                suggests success through persistence and wise decisions.
+            </p>
+
+            <p>
+                Focus on long-term planning and continue developing
+                your communication and organizational skills.
+            </p>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+    <!-- Guidance Note -->
+
+    <div class="alert alert-warning mt-5 text-center">
+
+        <strong>Guidance Note:</strong><br>
+
+        Disha Connect believes astrology can offer direction and perspective,
+        while your decisions and actions shape your journey.
+        Use these insights as guidance alongside your own wisdom and judgment.
+
+    </div>
+
+</div>
+
+{% endblock %}

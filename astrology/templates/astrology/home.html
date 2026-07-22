@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+
+{% block title %}Astrological Guidance{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="text-center mb-5">
+        <h1>🔮 Astrological Guidance</h1>
+
+        <p class="text-muted">
+            Explore astrology for guidance, reflection and clarity.
+        </p>
+    </div>
+
+    <!-- Main Features -->
+
+    <div class="row text-center">
+
+        <div class="col-md-4 mb-4">
+            <div class="card shadow h-100">
+                <div class="card-body">
+                    <h4>🔮 Generate Kundali</h4>
+                    <p>Create your birth chart.</p>
+                    <a href="{%url 'generate_kundali' %}" class="btn btn-primary">
+                        Generate
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card shadow h-100">
+                <div class="card-body">
+                    <h4>💕 Kundali Matching</h4>
+                    <p>Check compatibility.</p>
+                    <a href="{% url 'kundali_matching' %}" class="btn btn-primary">
+                        Match
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="col-md-4 mb-4">
+            <div class="card shadow h-100">
+                <div class="card-body">
+                    <h4>📅 Today's Panchang</h4>
+                    <p>View today's auspicious timings and
+                important astrological details.</p>
+                    <a href="{% url 'today_panchang' %}" class="btn btn-primary">
+                        View
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Secondary Features -->
+
+    <div class="row text-center mt-4">
+
+        <div class="col-md-4 mb-4">
+            <div class="card shadow h-100">
+                <div class="card-body">
+                    <h4>🤖 AI Astrology</h4>
+                    <p>Ask astrology questions.</p>
+                    <a href="#" class="btn btn-primary">
+                        Ask AI
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card shadow h-100">
+                <div class="card-body">
+                    <h4>💬 Chat with Astrologer</h4>
+                    <p>Talk with experts.</p>
+                    <a href="#" class="btn btn-primary">
+                        Chat
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card shadow h-100">
+                <div class="card-body">
+                    <h4>❓ Ask a Question</h4>
+                    <p>Ask custom questions.</p>
+                    <a href="#" class="btn btn-primary">
+                        Ask
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Popular Questions -->
+
+    <div class="mt-5">
+
+        <h3>Popular Questions</h3>
+
+        <div class="list-group">
+
+            {% for question in popular_questions %}
+
+                <a href="#"
+                   class="list-group-item list-group-item-action">
+
+                    {{ question.question }}
+
+                </a>
+
+            {% empty %}
+
+                <div class="alert alert-info">
+                    No questions available.
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    <!-- Guidance Note -->
+
+    <div class="alert alert-primary mt-5 text-center">
+
+        <strong>Guidance Note:</strong><br>
+
+        Disha Connect believes astrology can offer
+        direction and perspective, while your decisions
+        and actions shape your journey. Use these
+        insights as guidance alongside your own wisdom
+        and judgment.
+
+    </div>
+
+</div>
+
+{% endblock %}

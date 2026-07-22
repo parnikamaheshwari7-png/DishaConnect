@@ -1,0 +1,239 @@
+{% load i18n %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+
+        <!-- Logo -->
+        <a class="navbar-brand fw-bold" href="{% url 'home' %}">
+            Disha Connect
+        </a>
+
+        <!-- Toggle Button -->
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <!-- Navbar -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <!-- Left Side -->
+            <ul class="navbar-nav me-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'home' %}">
+                        {% trans "Home" %}
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle"
+                       href="#"
+                       role="button"
+                       data-bs-toggle="dropdown"
+                       aria-expanded="false">
+
+                        {% trans "Guidance" %}
+                    </a>
+
+                    <ul class="dropdown-menu">
+
+                        <li>
+                            <a class="dropdown-item"
+                               href="{% url 'general_advice' %}">
+                                {% trans "General Guidance" %}
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item"
+                               href="{% url 'astrology_home' %}">
+                                {% trans "Astrological Guidance" %}
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        {% trans "About" %}
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        {% trans "Contact" %}
+                    </a>
+                </li>
+
+            </ul>
+
+            <!-- Right Side -->
+            <ul class="navbar-nav align-items-center">
+
+                <!-- Language -->
+                <li class="nav-item dropdown">
+
+                    <a class="nav-link dropdown-toggle"
+                       href="#"
+                       role="button"
+                       data-bs-toggle="dropdown">
+
+                        🌐 {% trans "Language" %}
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-end">
+
+                        <li>
+                            <form action="{% url 'set_language' %}"
+                                  method="post">
+
+                                {% csrf_token %}
+
+                                <input name="next"
+                                       type="hidden"
+                                       value="{{ request.path }}">
+
+                                <input name="language"
+                                       type="hidden"
+                                       value="en">
+
+                                <button type="submit"
+                                        class="dropdown-item">
+
+                                    🇬🇧 English
+
+                                </button>
+
+                            </form>
+                        </li>
+
+                        <li>
+                            <form action="{% url 'set_language' %}"
+                                  method="post">
+
+                                {% csrf_token %}
+
+                                <input name="next"
+                                       type="hidden"
+                                       value="{{ request.path }}">
+
+                                <input name="language"
+                                       type="hidden"
+                                       value="hi">
+
+                                <button type="submit"
+                                        class="dropdown-item">
+
+                                    🇮🇳 हिन्दी
+
+                                </button>
+
+                            </form>
+                        </li>
+
+                    </ul>
+
+                </li>
+
+                <!-- Theme -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        🌙 {% trans "Theme" %}
+                    </a>
+                </li>
+
+                {% if user.is_authenticated %}
+
+                    <!-- Welcome User -->
+                    <li class="nav-item me-3">
+                        <span class="navbar-text fw-semibold">
+                            {% trans "Welcome" %}, {{ user.first_name }}
+                        </span>
+                    </li>
+
+                    <!-- Preferences -->
+                    <li class="nav-item dropdown">
+
+                        <a class="nav-link dropdown-toggle"
+                           href="#"
+                           role="button"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false">
+
+                            {% trans "Preferences" %}
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-end">
+
+                            <li>
+                                <a class="dropdown-item"
+                                   href="{% url 'profile' %}">
+
+                                    {% trans "My Profile" %}
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item"
+                                   href="#">
+
+                                    {% trans "Account Settings" %}
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+                    <!-- Logout -->
+                    <li class="nav-item ms-2">
+
+                        <a class="btn btn-danger"
+                           href="{% url 'logout' %}">
+
+                            {% trans "Logout" %}
+                        </a>
+
+                    </li>
+
+                {% else %}
+
+                    <!-- Login -->
+                    <li class="nav-item">
+
+                        <a class="nav-link"
+                           href="{% url 'login' %}">
+
+                            {% trans "Login" %}
+                        </a>
+
+                    </li>
+
+                    <!-- Register -->
+                    <li class="nav-item ms-2">
+
+                        <a class="btn btn-outline-primary"
+                           href="{% url 'register' %}">
+
+                            {% trans "Register" %}
+                        </a>
+
+                    </li>
+
+                {% endif %}
+
+            </ul>
+
+        </div>
+
+    </div>
+</nav>

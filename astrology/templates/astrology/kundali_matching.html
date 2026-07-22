@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="text-center mb-5">
+        <h1>💕 Kundali Matching</h1>
+        <p class="text-muted">
+            Check compatibility using birth details.
+        </p>
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-body">
+
+            <h3 class="mb-4">Person 1 Details</h3>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="row">
+
+                    <div class="col-md-4 mb-3">
+                        <label>Name (Optional)</label>
+                        <input type="text"
+                               class="form-control"
+                               name="person1_name">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label>Date of Birth</label>
+                        <input type="date"
+                               class="form-control"
+                               required
+                               name="person1_dob">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label>Time of Birth</label>
+                        <input type="time"
+                               class="form-control"
+                               required
+                               name="person1_tob">
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Place of Birth</label>
+                        <input type="text"
+                               class="form-control"
+                               required
+                               name="person1_pob">
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <h3 class="mb-4">Person 2 Details</h3>
+
+                <div class="row">
+
+                    <div class="col-md-4 mb-3">
+                        <label>Name (Optional)</label>
+                        <input type="text"
+                               class="form-control"
+                               name="person2_name">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label>Date of Birth</label>
+                        <input type="date"
+                               class="form-control"
+                               required
+                               name="person2_dob">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label>Time of Birth</label>
+                        <input type="time"
+                               class="form-control"
+                               required
+                               name="person2_tob">
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Place of Birth</label>
+                        <input type="text"
+                               class="form-control"
+                               required
+                               name="person2_pob">
+                    </div>
+
+                </div>
+
+                <div class="text-center mt-4">
+                    <button class="btn btn-primary btn-lg">
+                        Match Kundali
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    <div class="card shadow mb-4 border-warning">
+        <div class="card-body text-center">
+            <h4>📄 Upload Existing Kundali</h4>
+            <p>
+                Upload and AI-assisted matching will be available in a future update.
+            </p>
+
+            <button class="btn btn-secondary" disabled>
+                Coming Soon
+            </button>
+        </div>
+    </div>
+
+    {% if show_result %}
+
+    <div class="card shadow border-success">
+        <div class="card-body">
+
+            <h2 class="text-success text-center mb-4">
+                Compatibility Score
+            </h2>
+
+            <h1 class="text-center">
+                {{ score }}/{{ total_score }}
+            </h1>
+
+            <hr>
+
+            <p><strong>Overall Compatibility:</strong> {{ compatibility }}</p>
+            <p><strong>Communication:</strong> {{ communication }}</p>
+            <p><strong>Emotional Bond:</strong> {{ emotional_bond }}</p>
+            <p><strong>Financial Compatibility:</strong> {{ financial_compatibility }}</p>
+            <p><strong>Marriage Outlook:</strong> {{ marriage_outlook }}</p>
+
+        </div>
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

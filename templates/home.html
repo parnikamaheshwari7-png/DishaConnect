@@ -1,0 +1,248 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home | Disha Connect
+{% endblock %}
+
+{% block content %}
+
+<div class="container my-5">
+
+    <!-- Hero Section -->
+    <div class="text-center py-5">
+
+        <h1 class="display-4 fw-bold">
+            Welcome to Disha Connect
+        </h1>
+
+        <p class="lead">
+            Aapki Duwidha, Hamara Samadhan
+        </p>
+
+        <p class="text-muted">
+            Your trusted platform for secure, anonymous and meaningful guidance.
+        </p>
+
+        <div class="mt-4">
+
+            <a href="{%url 'ask_guide' %}" class="btn btn-primary btn-lg me-3">
+                Ask a Question
+            </a>
+
+            <a href="{%url 'general_advice' %}" class="btn btn-outline-primary btn-lg">
+                Explore Guidance
+            </a>
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    <!-- Who Can Use -->
+
+    <section class="my-5">
+
+        <h2 class="text-center mb-4">
+            Who Can Use Disha Connect?
+        </h2>
+
+        <div class="row text-center">
+
+            <div class="col-md-4 mb-4">
+
+                <h5>🎓 Students</h5>
+
+                <p>
+                    Career, education and study guidance.
+                </p>
+
+            </div>
+
+            <div class="col-md-4 mb-4">
+
+                <h5>💼 Professionals</h5>
+
+                <p>
+                    Career growth and workplace guidance.
+                </p>
+
+            </div>
+
+            <div class="col-md-4 mb-4">
+
+                <h5>🏢 Business Owners</h5>
+
+                <p>
+                    Business and decision-making guidance.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <hr>
+
+    <!-- Why Choose -->
+
+    <section class="my-5">
+
+        <h2 class="text-center mb-4">
+
+            Why Choose Disha Connect?
+
+        </h2>
+
+        <div class="row text-center">
+
+            <div class="col-md-3 mb-3">
+
+                🔒<br>
+
+                <strong>Anonymous Guidance</strong>
+
+            </div>
+
+            <div class="col-md-3 mb-3">
+
+                ✅<br>
+
+                <strong>Human Reviewed</strong>
+
+            </div>
+
+            <div class="col-md-3 mb-3">
+
+                🌐<br>
+
+                <strong>Bilingual Platform</strong>
+
+            </div>
+
+            <div class="col-md-3 mb-3">
+
+                🤖<br>
+
+                <strong>AI Ready</strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <hr>
+
+    <!-- Services -->
+
+    <section class="my-5">
+
+        <h2 class="text-center mb-5">
+
+            Our Services
+
+        </h2>
+
+        <div class="row">
+
+            <div class="col-md-6 mb-4">
+
+                <div class="card shadow-sm">
+
+                    <div class="card-body text-center">
+
+                        <h4>
+
+                            General Guidance
+
+                        </h4>
+
+                        <p>
+
+                            Personal, Career, Education,
+                            Business, Finance and more.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6 mb-4">
+
+                <div class="card shadow-sm">
+
+                    <div class="card-body text-center">
+
+                        <h4>
+
+                            Astrological Guidance
+
+                        </h4>
+
+                        <p>
+
+                            Traditional astrology-based
+                            consultation for life guidance.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <hr>
+
+    <!-- How It Works -->
+
+    <section class="my-5">
+
+        <h2 class="text-center mb-5">
+
+            How It Works
+
+        </h2>
+
+        <div class="row text-center">
+
+            <div class="col-md-4">
+
+                <h1>1️⃣</h1>
+
+                <h5>Ask Your Question</h5>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <h1>2️⃣</h1>
+
+                <h5>Guide Reviews</h5>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <h1>3️⃣</h1>
+
+                <h5>Receive Guidance</h5>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}
