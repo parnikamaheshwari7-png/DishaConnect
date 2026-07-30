@@ -1,6 +1,7 @@
 {% load i18n %}
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+
     <div class="container">
 
         <!-- Logo -->
@@ -8,185 +9,101 @@
             Disha Connect
         </a>
 
-        <!-- Toggle Button -->
+        <!-- Toggle -->
         <button class="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
-                data-bs-target="#navbarNav"
-                aria-controls="navbarNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
+                data-bs-target="#navbarNav">
 
             <span class="navbar-toggler-icon"></span>
 
         </button>
 
-        <!-- Navbar -->
         <div class="collapse navbar-collapse" id="navbarNav">
 
-            <!-- Left Side -->
+            <!-- LEFT NAVBAR -->
+
             <ul class="navbar-nav me-auto">
 
-                <li class="nav-item">
-                    <a class="nav-link active" href="{% url 'home' %}">
-                        {% trans "Home" %}
-                    </a>
-                </li>
+                {% if user.is_authenticated and user.role == "GUIDE" %}
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle"
-                       href="#"
-                       role="button"
-                       data-bs-toggle="dropdown"
-                       aria-expanded="false">
+                    {% if request.resolver_match.url_name == "guide_dashboard" %}
 
-                        {% trans "Guidance" %}
-                    </a>
+                        <!-- Guide Dashboard -->
 
-                    <ul class="dropdown-menu">
-
-                        <li>
-                            <a class="dropdown-item"
-                               href="{% url 'general_advice' %}">
-                                {% trans "General Guidance" %}
+                        <li class="nav-item">
+                            <a class="nav-link active"
+                               href="{% url 'home' %}">
+                                Home
                             </a>
                         </li>
 
-                        <li>
-                            <a class="dropdown-item"
-                               href="{% url 'astrology_home' %}">
-                                {% trans "Astrological Guidance" %}
+                    {% else %}
+
+                        <!-- Guide Home -->
+
+                        <li class="nav-item">
+                            <a class="nav-link active"
+                               href="{% url 'home' %}">
+                                Home
                             </a>
                         </li>
 
-                    </ul>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        {% trans "About" %}
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        {% trans "Contact" %}
-                    </a>
-                </li>
-
-            </ul>
-
-            <!-- Right Side -->
-            <ul class="navbar-nav align-items-center">
-
-                <!-- Language -->
-                <li class="nav-item dropdown">
-
-                    <a class="nav-link dropdown-toggle"
-                       href="#"
-                       role="button"
-                       data-bs-toggle="dropdown">
-
-                        🌐 {% trans "Language" %}
-                    </a>
-
-                    <ul class="dropdown-menu dropdown-menu-end">
-
-                        <li>
-                            <form action="{% url 'set_language' %}"
-                                  method="post">
-
-                                {% csrf_token %}
-
-                                <input name="next"
-                                       type="hidden"
-                                       value="{{ request.path }}">
-
-                                <input name="language"
-                                       type="hidden"
-                                       value="en">
-
-                                <button type="submit"
-                                        class="dropdown-item">
-
-                                    🇬🇧 English
-
-                                </button>
-
-                            </form>
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               href="{% url 'guide_dashboard' %}">
+                                Dashboard
+                            </a>
                         </li>
 
-                        <li>
-                            <form action="{% url 'set_language' %}"
-                                  method="post">
+                    {% endif %}
 
-                                {% csrf_token %}
-
-                                <input name="next"
-                                       type="hidden"
-                                       value="{{ request.path }}">
-
-                                <input name="language"
-                                       type="hidden"
-                                       value="hi">
-
-                                <button type="submit"
-                                        class="dropdown-item">
-
-                                    🇮🇳 हिन्दी
-
-                                </button>
-
-                            </form>
-                        </li>
-
-                    </ul>
-
-                </li>
-
-                <!-- Theme -->
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        🌙 {% trans "Theme" %}
-                    </a>
-                </li>
-
-                {% if user.is_authenticated %}
-
-                    <!-- Welcome User -->
-                    <li class="nav-item me-3">
-                        <span class="navbar-text fw-semibold">
-                            {% trans "Welcome" %}, {{ user.first_name }}
-                        </span>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            About
+                        </a>
                     </li>
 
-                    <!-- Preferences -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Contact
+                        </a>
+                    </li>
+
+                {% else %}
+
+                    <!-- Guest & User -->
+
+                    <li class="nav-item">
+                        <a class="nav-link active"
+                           href="{% url 'home' %}">
+                            Home
+                        </a>
+                    </li>
+
                     <li class="nav-item dropdown">
 
                         <a class="nav-link dropdown-toggle"
                            href="#"
-                           role="button"
-                           data-bs-toggle="dropdown"
-                           aria-expanded="false">
+                           data-bs-toggle="dropdown">
 
-                            {% trans "Preferences" %}
+                            Guidance
+
                         </a>
 
-                        <ul class="dropdown-menu dropdown-menu-end">
+                        <ul class="dropdown-menu">
 
                             <li>
                                 <a class="dropdown-item"
-                                   href="{% url 'profile' %}">
-
-                                    {% trans "My Profile" %}
+                                   href="{% url 'general_advice' %}">
+                                    General Guidance
                                 </a>
                             </li>
 
                             <li>
                                 <a class="dropdown-item"
-                                   href="#">
-
-                                    {% trans "Account Settings" %}
+                                   href="{% url 'astrology_home' %}">
+                                    Astrological Guidance
                                 </a>
                             </li>
 
@@ -194,37 +111,212 @@
 
                     </li>
 
-                    <!-- Logout -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            About
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Contact
+                        </a>
+                    </li>
+
+                {% endif %}
+
+            </ul>
+
+            <!-- RIGHT NAVBAR -->
+
+            <ul class="navbar-nav align-items-center">
+
+                <!-- Language -->
+
+                <li class="nav-item dropdown">
+
+                    <a class="nav-link dropdown-toggle"
+                       href="#"
+                       data-bs-toggle="dropdown">
+
+                        🌐 Language
+
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-end">
+
+                        <li>
+
+                            <form action="{% url 'set_language' %}"
+                                  method="post">
+
+                                {% csrf_token %}
+
+                                <input type="hidden"
+                                       name="next"
+                                       value="{{ request.path }}">
+
+                                <input type="hidden"
+                                       name="language"
+                                       value="en">
+
+                                <button class="dropdown-item"
+                                        type="submit">
+
+                                    🇬🇧 English
+
+                                </button>
+
+                            </form>
+
+                        </li>
+
+                        <li>
+
+                            <form action="{% url 'set_language' %}"
+                                  method="post">
+
+                                {% csrf_token %}
+
+                                <input type="hidden"
+                                       name="next"
+                                       value="{{ request.path }}">
+
+                                <input type="hidden"
+                                       name="language"
+                                       value="hi">
+
+                                <button class="dropdown-item"
+                                        type="submit">
+
+                                    🇮🇳 हिन्दी
+
+                                </button>
+
+                            </form>
+
+                        </li>
+
+                    </ul>
+
+                </li>
+
+                <!-- Theme -->
+
+                <li class="nav-item">
+
+                    <a class="nav-link" href="#">
+
+                        🌙 Theme
+
+                    </a>
+
+                </li>
+
+                {% if user.is_authenticated %}
+
+                    <!-- Welcome -->
+
+                    <li class="nav-item me-3">
+
+                        <span class="navbar-text">
+
+                            Welcome, {{ user.first_name }}
+
+                        </span>
+
+                    </li>
+
+                    {% if user.role == "GUIDE" %}
+
+                        <!-- Guide -->
+
+                        <li class="nav-item">
+
+                            <a class="nav-link"
+                               href="#">
+
+                                Account Settings
+
+                            </a>
+
+                        </li>
+
+                    {% else %}
+
+                        <!-- User -->
+
+                        <li class="nav-item dropdown">
+
+                            <a class="nav-link dropdown-toggle"
+                               href="#"
+                               data-bs-toggle="dropdown">
+
+                                Preferences
+
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-menu-end">
+
+                                <li>
+
+                                    <a class="dropdown-item"
+                                       href="{% url 'profile' %}">
+
+                                        My Profile
+
+                                    </a>
+
+                                </li>
+
+                                <li>
+
+                                    <a class="dropdown-item"
+                                       href="#">
+
+                                        Account Settings
+
+                                    </a>
+
+                                </li>
+
+                            </ul>
+
+                        </li>
+
+                    {% endif %}
+
                     <li class="nav-item ms-2">
 
                         <a class="btn btn-danger"
                            href="{% url 'logout' %}">
 
-                            {% trans "Logout" %}
+                            Logout
+
                         </a>
 
                     </li>
 
                 {% else %}
 
-                    <!-- Login -->
                     <li class="nav-item">
 
                         <a class="nav-link"
                            href="{% url 'login' %}">
 
-                            {% trans "Login" %}
+                            Login
+
                         </a>
 
                     </li>
 
-                    <!-- Register -->
                     <li class="nav-item ms-2">
 
                         <a class="btn btn-outline-primary"
                            href="{% url 'register' %}">
 
-                            {% trans "Register" %}
+                            Register
+
                         </a>
 
                     </li>
@@ -236,4 +328,5 @@
         </div>
 
     </div>
+
 </nav>
