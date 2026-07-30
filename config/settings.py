@@ -84,10 +84,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'dishaconnect',
-        'USER': '****',
-        'PASSWORD': '********',
+        'USER': 'root',
+        'PASSWORD': 'Root@12345',
         'HOST': 'localhost',
-        'PORT': '****',
+        'PORT': '3306',
     }
 }
 

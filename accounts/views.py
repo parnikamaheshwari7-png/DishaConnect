@@ -110,7 +110,7 @@ def register(request):
 
 # -----------------------------
 # Login
-# -----------------------------under review."
+# -----------------------------
 
 def user_login(request):
 
@@ -162,6 +162,8 @@ def user_login(request):
         request,
         "accounts/login.html"
     )
+
+
 # -----------------------------
 # Logout
 # -----------------------------

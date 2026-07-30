@@ -1,12 +1,16 @@
-from django.shortcuts import render
-from . models import Category, Question
-# Create your views here.
+from django.contrib import messages
+from django.shortcuts import get_object_or_404, redirect, render
+
+from queries.forms import AskGuideForm
+
+from .models import Category, Question
+
 
 def general_advice(request):
-    categories=Category.objects.all()
+    categories = Category.objects.all()
 
-    context={
-        "categories":categories
+    context = {
+        "categories": categories
     }
 
     return render(request, "guidance/general_advice.html", context)
@@ -32,7 +36,6 @@ def category_questions(request, category_id):
         context
     )
 
-from django.shortcuts import get_object_or_404
 
 def question_answer(request, question_id):
 
@@ -60,9 +63,28 @@ def question_answer(request, question_id):
         context
     )
 
+
 def ai_guidance(request):
     return render(request, "guidance/ai_guidance.html")
 
 
 def ask_guide(request):
-    return render(request, "guidance/ask_guide.html")
+    if not request.user.is_authenticated:
+        return render(request, "guidance/ask_guide.html")
+
+    if request.method == "POST":
+        form = AskGuideForm(request.POST)
+        if form.is_valid():
+            query = form.save(commit=False)
+            query.user = request.user
+            query.save()
+            messages.success(
+                request,
+                "Your question has been submitted successfully. "
+                "A verified guide will review it soon.",
+            )
+            return redirect("ask_guide")
+    else:
+        form = AskGuideForm()
+
+    return render(request, "guidance/ask_guide.html", {"form": form})

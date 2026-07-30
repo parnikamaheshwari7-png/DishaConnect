@@ -7,12 +7,12 @@ class RegisterForm(UserCreationForm):
 
     role = forms.ChoiceField(
         choices=[
-            (CustomUser.Roles.USER, "User"),
-            (CustomUser.Roles.GUIDE, "Guide"),
+            (CustomUser.Roles.USER, "Seek Guidance"),
+            (CustomUser.Roles.GUIDE, "Become a Guide"),
         ],
-        widget=forms.Select(attrs={
-            "class": "form-select"
-        })
+        widget=forms.RadioSelect(attrs={
+            "class": "role-radio",
+        }),
     )
 
     qualification = forms.CharField(
@@ -34,7 +34,9 @@ class RegisterForm(UserCreationForm):
     expertise = forms.ModelMultipleChoiceField(
         queryset=Expertise.objects.all(),
         required=False,
-        widget=forms.CheckboxSelectMultiple
+        widget=forms.CheckboxSelectMultiple(attrs={
+            "class": "expertise-checkboxes",
+        }),
     )
 
     bio = forms.CharField(
@@ -84,24 +86,52 @@ class RegisterForm(UserCreationForm):
         widgets = {
             "first_name": forms.TextInput(attrs={
                 "class": "form-control",
-                "placeholder": "First Name"
+                "placeholder": "First name",
             }),
 
             "last_name": forms.TextInput(attrs={
                 "class": "form-control",
-                "placeholder": "Last Name"
+                "placeholder": "Last name",
             }),
 
             "email": forms.EmailInput(attrs={
                 "class": "form-control",
-                "placeholder": "Email Address"
+                "placeholder": "you@example.com",
             }),
 
             "mobile_number": forms.TextInput(attrs={
                 "class": "form-control",
-                "placeholder": "Mobile Number"
+                "placeholder": "Mobile number (optional)",
             }),
         }
+
+        labels = {
+            "first_name": "First Name",
+            "last_name": "Last Name",
+            "email": "Email Address",
+            "mobile_number": "Mobile Number",
+            "role": "How would you like to join?",
+            "qualification": "Highest Qualification",
+            "experience_years": "Years of Experience",
+            "bio": "About You",
+            "languages_known": "Languages Known",
+            "linkedin_url": "LinkedIn Profile",
+            "password1": "Password",
+            "password2": "Confirm Password",
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields["password1"].widget.attrs.update({
+            "class": "form-control",
+            "placeholder": "Create a strong password",
+        })
+        self.fields["password2"].widget.attrs.update({
+            "class": "form-control",
+            "placeholder": "Re-enter your password",
+        })
+        self.fields["mobile_number"].required = False
 
 
 class LoginForm(AuthenticationForm):
